@@ -28,7 +28,7 @@ namespace ProvaTecnica
             services.AddControllersWithViews();
 
             services.AddDbContext<ProvaTecnicaContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ProvaTecnicaContext")));
+                    options.UseMySql(Configuration.GetConnectionString("ProvaTecnicaContext"), builder => builder.MigrationsAssembly("ProvaTecnica")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
