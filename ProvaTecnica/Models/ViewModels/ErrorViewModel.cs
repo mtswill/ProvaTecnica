@@ -1,6 +1,6 @@
 using System;
 
-namespace ProvaTecnica.Models.ViewModels
+namespace ProvaTecnica.Models
 {
     public class ErrorViewModel
     {
