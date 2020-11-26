@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProvaTecnica.Data;
 
 namespace ProvaTecnica.Migrations
 {
     [DbContext(typeof(ProvaTecnicaContext))]
-    partial class ProvaTecnicaContextModelSnapshot : ModelSnapshot
+    [Migration("20201126184348_ProdutoAdicionado")]
+    partial class ProdutoAdicionado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

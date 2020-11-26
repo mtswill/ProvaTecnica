@@ -14,6 +14,7 @@ namespace ProvaTecnica.Data
         {
         }
 
-        public DbSet<ProvaTecnica.Models.Category> Category { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Category> Product { get; set; }
     }
 }
