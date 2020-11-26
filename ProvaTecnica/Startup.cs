@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProvaTecnica.Data;
 using ProvaTecnica.Models;
+using ProvaTecnica.Services;
 
 namespace ProvaTecnica
 {
@@ -31,7 +32,8 @@ namespace ProvaTecnica
             services.AddDbContext<ProvaTecnicaContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("ProvaTecnicaContext"), builder => builder.MigrationsAssembly("ProvaTecnica")));
 
-            services.AddScoped<SeedingService>();
+            services.AddScoped<SeedingService>(); 
+            services.AddScoped<ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

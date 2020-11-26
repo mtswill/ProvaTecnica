@@ -13,6 +13,7 @@ namespace ProvaTecnica.Models
         public double Value { get; set; }
         public string Brand { get; set; }
         public Category Category { get; set; }
+        public int CategoryId { get; set; }
 
         public Product(){}
 
