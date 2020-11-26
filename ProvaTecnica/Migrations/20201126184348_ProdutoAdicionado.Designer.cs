@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProvaTecnica.Data;
+using ProvaTecnica.Models;
 
 namespace ProvaTecnica.Migrations
 {
