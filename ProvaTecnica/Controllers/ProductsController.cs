@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProvaTecnica.Services;
+using ProvaTecnica.Models;
 
 namespace ProvaTecnica.Controllers
 {
@@ -20,6 +21,20 @@ namespace ProvaTecnica.Controllers
         {
             var list = _productService.FindAll();
             return View(list);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Product product)
+        {
+            _productService.Insert(product);
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }
