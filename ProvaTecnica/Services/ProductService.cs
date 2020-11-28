@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ProvaTecnica.Data;
 using ProvaTecnica.Models;
 using Microsoft.EntityFrameworkCore;
+using ProvaTecnica.Services.Exceptions;
 
 namespace ProvaTecnica.Services
 {
@@ -38,6 +39,23 @@ namespace ProvaTecnica.Services
             var obj = _context.Product.Find(id);
             _context.Product.Remove(obj);
             _context.SaveChanges();
+        }
+
+        public void Update(Product obj)
+        {
+            if(!_context.Product.Any(x => x.Id == obj.Id)) 
+            {
+                throw new NotFoundException("Id not found");
+            }
+            try
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+            catch(DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
     }
 }
