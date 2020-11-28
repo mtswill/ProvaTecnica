@@ -20,7 +20,7 @@ namespace ProvaTecnica.Services
 
         public List<Product> FindAll()
         {
-            return _context.Product.ToList();
+            return _context.Product.Include(product => product.Category).ToList();
         }
 
         public void Insert(Product obj)
