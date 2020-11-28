@@ -1,0 +1,10 @@
+O banco utilizado foi o MySQL Community Server 8.0.22
+
+Criar um usuário local no MySQL Workbench com as informações
+Nome: developer
+Senha: 1234
+
+Ao abrir o arquivo .sln no Visual Studio, ir na aba Tools -> NuGet Package Manager -> Package Manager Console. 
+No console que abrir, digitar Update-Database e o database "prova_tecnica" será criado com as entidades.
+
+Após isso, a aplicação funcionará normalmente.
