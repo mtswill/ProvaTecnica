@@ -7,6 +7,7 @@ using ProvaTecnica.Services;
 using ProvaTecnica.Models;
 using ProvaTecnica.Models.ViewModels;
 using ProvaTecnica.Services.Exceptions;
+using System.Diagnostics;
 
 namespace ProvaTecnica.Controllers
 {
@@ -45,10 +46,10 @@ namespace ProvaTecnica.Controllers
 
         public IActionResult Delete(int? id)
         {
-            if(id == null) return NotFound();
+            if(id == null) return RedirectToAction(nameof(Error), new { message = "ID não fornecido" });
 
             var obj = _productService.FindById(id.Value);
-            if(obj == null) return NotFound();
+            if(obj == null) return RedirectToAction(nameof(Error), new { message = "ID não encontrado" });
 
             return View(obj);
         }
@@ -63,20 +64,20 @@ namespace ProvaTecnica.Controllers
 
         public IActionResult Details(int? id)
         {
-            if(id == null) return NotFound();
+            if(id == null) return RedirectToAction(nameof(Error), new { message = "ID não fornecido" });
 
             var obj = _productService.FindById(id.Value);
-            if(obj == null) return NotFound();
+            if(obj == null) return RedirectToAction(nameof(Error), new { message = "ID não encontrado" });
 
             return View(obj);
         }
 
         public IActionResult Edit(int? id)
         {
-            if(id == null) return NotFound();
+            if(id == null) return RedirectToAction(nameof(Error), new { message = "ID não fornecido" });
 
             var obj = _productService.FindById(id.Value);
-            if(obj == null) return NotFound();
+            if(obj == null) return RedirectToAction(nameof(Error), new { message = "ID não encontrado" });
 
             List<Category> categories = _categoryService.FindAll();
             ProductFormViewModel viewModel = new ProductFormViewModel { Product = obj, Categories = categories };
@@ -87,20 +88,26 @@ namespace ProvaTecnica.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Product product)
         {
-            if(id != product.Id) return BadRequest();
+            if(id != product.Id) return RedirectToAction(nameof(Error), new { message = "ID não corresponde" });
             try
             {
                 _productService.Update(product);
                 return RedirectToAction(nameof(Index));
             }
-            catch(NotFoundException)
+            catch(ApplicationException e)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            catch(DbConcurrencyException)
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
             {
-                return BadRequest();
-            }
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }
