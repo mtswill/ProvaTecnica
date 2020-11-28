@@ -22,11 +22,11 @@ namespace ProvaTecnica.Data
                 return;
             }
 
-            Category c1 = new Category(5, "Carro", "Departamento de carros");
-            Category c2 = new Category(6, "Moto", "Departamento de motos");
+            Category c1 = new Category(1, "Carro", "Departamento de carros");
+            Category c2 = new Category(2, "Moto", "Departamento de motos");
 
-            Product p1 = new Product(7, "celta", "hatch", 10000.00, "Chevrolet", c1);
-            Product p2 = new Product(8, "fan", "150cc", 6000.00, "Honda", c2);
+            Product p1 = new Product(1, "celta", "hatch", 10000.00, "Chevrolet", c1);
+            Product p2 = new Product(2, "fan", "150cc", 6000.00, "Honda", c2);
 
             _context.Category.AddRange(c1, c2);
             _context.Product.AddRange(p1, p2);

@@ -7,24 +7,18 @@ using ProvaTecnica.Models;
 
 namespace ProvaTecnica.Services
 {
-    public class ProductService
+    public class CategoryService
     {
         private readonly ProvaTecnicaContext _context;
 
-        public ProductService(ProvaTecnicaContext context)
+        public CategoryService(ProvaTecnicaContext context)
         {
             _context = context;
         }
 
-        public List<Product> FindAll()
+        public List<Category> FindAll()
         {
-            return _context.Product.ToList();
-        }
-
-        public void Insert(Product obj)
-        {
-            _context.Add(obj);
-            _context.SaveChanges();
+            return _context.Category.OrderBy(x => x.Name).ToList();
         }
     }
 }

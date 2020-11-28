@@ -5,16 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProvaTecnica.Services;
 using ProvaTecnica.Models;
+using ProvaTecnica.Models.ViewModels;
 
 namespace ProvaTecnica.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly ProductService _productService;
+        private readonly CategoryService _categoryService;
 
-        public ProductsController(ProductService productService)
+        public ProductsController(ProductService productService, CategoryService categoryService)
         {
             _productService = productService;
+            _categoryService = categoryService;
         }
 
         public IActionResult Index()
@@ -25,7 +28,9 @@ namespace ProvaTecnica.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var categories = _categoryService.FindAll();
+            var viewModel = new ProductFormViewModel { Categories = categories };
+            return View(viewModel);
         }
 
         [HttpPost]
