@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProvaTecnica.Data;
 using ProvaTecnica.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProvaTecnica.Services
 {
@@ -29,7 +30,7 @@ namespace ProvaTecnica.Services
 
         public Product FindById(int id)
         {
-            return _context.Product.FirstOrDefault(obj => obj.Id == id);
+            return _context.Product.Include(obj => obj.Category).FirstOrDefault(obj => obj.Id == id);
         }
 
         public void Remove(int id)
