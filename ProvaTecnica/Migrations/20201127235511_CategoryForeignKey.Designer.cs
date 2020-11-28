@@ -8,8 +8,8 @@ using ProvaTecnica.Data;
 namespace ProvaTecnica.Migrations
 {
     [DbContext(typeof(ProvaTecnicaContext))]
-    [Migration("20201126203625_DepartmentForeignKey")]
-    partial class DepartmentForeignKey
+    [Migration("20201127235511_CategoryForeignKey")]
+    partial class CategoryForeignKey
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

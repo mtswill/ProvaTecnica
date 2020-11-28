@@ -23,6 +23,7 @@ namespace ProvaTecnica.Services
 
         public void Insert(Product obj)
         {
+            obj.Category = _context.Category.First();
             _context.Add(obj);
             _context.SaveChanges();
         }
