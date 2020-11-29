@@ -1,7 +1,7 @@
 O banco utilizado foi o MySQL Community Server 8.0.22
 
 Criar um usuário local no MySQL Workbench com as informações
-Nome: developer
+Usuário: developer
 Senha: 1234
 
 Ao abrir o arquivo .sln no Visual Studio, ir na aba Tools -> NuGet Package Manager -> Package Manager Console. 
